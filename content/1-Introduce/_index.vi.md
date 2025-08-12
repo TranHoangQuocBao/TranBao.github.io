@@ -1,22 +1,40 @@
 ---
-title : "Giới thiệu"
-date :  "`r Sys.Date()`" 
-weight : 1 
-chapter : false
-pre : " <b> 1. </b> "
+title: "Giới thiệu"
+date: 2025-08-12T00:00:00+07:00
+weight: 1
+chapter: false
+pre: "<b>1. </b>"
 ---
-**Session Manager** là một chức năng nằm trong dịch vụ System Manager của AWS, Session Manager cung cấp khả năng quản lý các máy chủ một cách an toàn mà **không cần mở port SSH, không cần Bastion Host hoặc quản lý SSH key**. 
-Session Manager cũng giúp dễ dàng tuân thủ các chính sách của công ty yêu cầu quyền truy cập có kiểm soát, đảm bảo việc bảo mật nghiêm ngặt và ghi log truy việc truy cập trong khi vẫn cung cấp cho người dùng cuối quyền truy cập đa nền tảng.
 
-Với việc sử dụng Session Manager, bạn sẽ có được những ưu điểm sau:
+# Giới thiệu về Tích hợp Active Directory với AWS Managed Microsoft AD
 
-- Không cần phải mở cổng 22 cho giao thức SSH.
-- Có thể cấu hình để kết nối không cần đi ra ngoài internet.
-- Không cần quản lý private key của server để kết nối SSH.
-- Quản lý tập trung được user bằng việc sử dụng AWS IAM.
-- Truy cập tới server một cách dễ dàng và đơn giản bằng một cú click chuột.
-- Thời gian truy cập nhanh chóng hơn các phương thức truyền thống như SSH.
-- Hỗ trợ nhiều hệ điều hành khác nhau như Linux, Windows, MacOS.
-- Log lại được các phiên kết nối và các câu lệnh đã thực thi trong lúc kết nối tới server.
+## Tổng quan
+AWS Managed Microsoft AD là dịch vụ thư mục được quản lý bởi AWS, cho phép tổ chức vận hành Microsoft Active Directory trên nền tảng đám mây AWS mà không cần quản lý thủ công các Domain Controller.  
+Giải pháp này hỗ trợ tích hợp liền mạch với môi trường Active Directory tại chỗ, cho phép thiết lập mối quan hệ tin cậy, đồng bộ người dùng và xác thực tập trung cho cả ứng dụng đám mây và tại chỗ.
 
-Với những ưu điểm trên, bạn có thể sử dụng Session Manager thay vì sử dụng kỹ thuật Bastion host giúp chúng ta tiết kiệm được thời gian và chi phí khi quản lý server Bastion.
+## Lợi ích chính
+
+### 1. Quản lý tập trung
+- Đồng bộ người dùng và nhóm giữa AD tại chỗ và AWS.
+- Quản lý quyền và chính sách truy cập tại một nơi duy nhất.
+- Giảm bớt các tác vụ lặp lại khi tạo và cấu hình tài khoản.
+
+### 2. Nâng cao bảo mật
+- Tích hợp Xác thực đa yếu tố (MFA) và Đăng nhập một lần (SSO).
+- Thực thi chính sách bảo mật thông qua Group Policy Objects (GPOs).
+- Mã hóa dữ liệu khi truyền và khi lưu trữ.
+
+### 3. Khả năng mở rộng linh hoạt
+- Dễ dàng mở rộng dung lượng người dùng và nhóm mà không cần mua thêm phần cứng.
+- Triển khai Multi-AZ để đảm bảo tính sẵn sàng cao và khả năng chịu lỗi.
+- Tích hợp với các dịch vụ AWS như Amazon EC2, RDS và WorkSpaces.
+
+### 4. Giảm gánh nặng vận hành
+- Loại bỏ nhu cầu duy trì máy chủ AD vật lý.
+- Tự động cập nhật bản vá và phần mềm.
+- Tối ưu chi phí với mô hình trả phí theo mức sử dụng.
+
+## Thành phần chính
+1. **AWS Managed Microsoft AD** – Dịch vụ chính cung cấp hạ tầng Active Directory được quản lý toàn diện trên AWS.
+2. **Quan hệ tin cậy (Trust Relationships)** – Cho phép xác thực chéo miền và tích hợp với AD hiện có.
+3. **AWS IAM Identity Center / SSO** – Đăng nhập một lần t

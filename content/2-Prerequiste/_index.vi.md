@@ -1,6 +1,6 @@
 ---
 title : "Các bước chuẩn bị"
-date :  "`r Sys.Date()`" 
+date: 2025-08-12T00:00:00+07:00
 weight : 2 
 chapter : false
 pre : " <b> 2. </b> "
@@ -11,8 +11,8 @@ Bạn cần tạo sẵn 1 Linux instance thuộc public subnet và 1 Window in
 {{% /notice %}}
 
 Để tìm hiểu cách tạo các EC2 instance và VPC với public/private subnet các bạn có thể tham khảo bài lab :
-  - [Giới thiệu về Amazon EC2](https://000004.awsstudygroup.com/vi/)
-  - [Làm việc với Amazon VPC](https://000003.awsstudygroup.com/vi/)
+  - [Tài khoản AWS quyền Quản trị](https://000004.awsstudygroup.com/vi/)
+  - [VPC với 2 Private Subnets](https://000003.awsstudygroup.com/vi/)
 
 Để sử dụng System Manager để quản lý window instance nói riêng và các instance nói chung của chúng ta trên AWS, ta cần phải cung cấp quyền cho các instance của chúng ta có thể làm việc với System Manager.Trong phần chuẩn bị này, chúng ta cũng sẽ tiến hành tạo IAM Role để cấp quyền cho các instance có thể làm việc với System Manager.
 

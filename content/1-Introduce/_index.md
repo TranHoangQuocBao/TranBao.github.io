@@ -1,21 +1,40 @@
 ---
-title : "Introduction"
-date :  "`r Sys.Date()`" 
-weight : 1 
-chapter : false
-pre : " <b> 1. </b> "
+title: "Introduction"
+date: 2025-08-12T00:00:00+07:00
+weight: 1
+chapter: false
+pre: "<b> 1. </b>"
 ---
-**Session Manager** is a function within the AWS System Manager service, SSM provides verifiable and secure version management without opening incoming ports, without Bastion Host or SSH key management. Session Manager also makes it easy to comply with corporate policies that require controlled access to instances, strict security practices, and fully auditable logs with instance access details, while still providing end-users with one-click cross-platform access to your managed instances.
+# Introduction to Active Directory Integration with AWS Managed Microsoft AD
 
-By using Session Manager, you get the following advantages that traditional methods do not have:
+## Overview
+AWS Managed Microsoft AD is a managed directory service provided by AWS, enabling organizations to run Microsoft Active Directory on the AWS Cloud without the need to manage domain controllers manually.  
+This solution allows seamless integration with existing on-premises Active Directory environments, enabling trust relationships, user synchronization, and centralized authentication for both cloud and on-premises applications.
 
-- No need to open port 22 for SSH protocol, so it is more secure.
-- Can be configured so that the connection does not need to go outside the internet, so it is more secure.
-- No need to manage the server's private key to connect to SSH.
-- Centralized management of users using AWS IAM.
-- Access to the server easily and simply with one click.
-- Faster access time than traditional methods like SSH
-- Support many different operating systems such as Linux, Windows, MacOS
-- Log the connection sessions and commands executed while connecting to the server.
-  
-With the above advantages, you can use Session Manager instead of using Bastion host technique to save us time and money when managing Bastion server. 
+## Key Benefits
+
+### 1. Centralized Management
+- Synchronize users and groups between on-premises AD and AWS.
+- Manage permissions and access policies from a single location.
+- Reduce repetitive tasks when creating and configuring accounts.
+
+### 2. Enhanced Security
+- Integrate Multi-Factor Authentication (MFA) and Single Sign-On (SSO).
+- Enforce security policies using Group Policy Objects (GPOs).
+- Data encryption both in-transit and at-rest.
+
+### 3. Flexible Scalability
+- Easily scale user and group capacity without purchasing additional hardware.
+- Multi-AZ deployment for high availability and fault tolerance.
+- Integration with AWS services like Amazon EC2, RDS, and WorkSpaces.
+
+### 4. Reduced Operational Overhead
+- Eliminate the need for maintaining physical AD servers.
+- Automatic patching and software updates.
+- Cost optimization with pay-as-you-go pricing.
+
+## Core Components
+1. **AWS Managed Microsoft AD** – The main service providing a fully managed Active Directory infrastructure on AWS.
+2. **Trust Relationships** – Enable cross-domain authentication and integration with existing AD.
+3. **AWS IAM Identity Center / SSO** – Centralized single sign-on for AWS and third-party applications.
+4. **Monitoring & Logging** – Use Amazon CloudWatch, AWS CloudTrail, and Amazon SNS for monitoring, logging, and alerting.

@@ -1,0 +1,78 @@
+[
+{
+	"uri": "/vi/1-introduce/",
+	"title": "Giới thiệu",
+	"tags": [],
+	"description": "",
+	"content": "Giới thiệu về Tích hợp Active Directory với AWS Managed Microsoft AD Tổng quan AWS Managed Microsoft AD là dịch vụ thư mục được quản lý bởi AWS, cho phép tổ chức vận hành Microsoft Active Directory trên nền tảng đám mây AWS mà không cần quản lý thủ công các Domain Controller.\nGiải pháp này hỗ trợ tích hợp liền mạch với môi trường Active Directory tại chỗ, cho phép thiết lập mối quan hệ tin cậy, đồng bộ người dùng và xác thực tập trung cho cả ứng dụng đám mây và tại chỗ.\nLợi ích chính 1. Quản lý tập trung Đồng bộ người dùng và nhóm giữa AD tại chỗ và AWS. Quản lý quyền và chính sách truy cập tại một nơi duy nhất. Giảm bớt các tác vụ lặp lại khi tạo và cấu hình tài khoản. 2. Nâng cao bảo mật Tích hợp Xác thực đa yếu tố (MFA) và Đăng nhập một lần (SSO). Thực thi chính sách bảo mật thông qua Group Policy Objects (GPOs). Mã hóa dữ liệu khi truyền và khi lưu trữ. 3. Khả năng mở rộng linh hoạt Dễ dàng mở rộng dung lượng người dùng và nhóm mà không cần mua thêm phần cứng. Triển khai Multi-AZ để đảm bảo tính sẵn sàng cao và khả năng chịu lỗi. Tích hợp với các dịch vụ AWS như Amazon EC2, RDS và WorkSpaces. 4. Giảm gánh nặng vận hành Loại bỏ nhu cầu duy trì máy chủ AD vật lý. Tự động cập nhật bản vá và phần mềm. Tối ưu chi phí với mô hình trả phí theo mức sử dụng. Thành phần chính AWS Managed Microsoft AD – Dịch vụ chính cung cấp hạ tầng Active Directory được quản lý toàn diện trên AWS. Quan hệ tin cậy (Trust Relationships) – Cho phép xác thực chéo miền và tích hợp với AD hiện có. AWS IAM Identity Center / SSO – Đăng nhập một lần t "
+},
+{
+	"uri": "/vi/",
+	"title": "Giới thiệu",
+	"tags": [],
+	"description": "",
+	"content": "Giới thiệu về Tích hợp Active Directory với AWS Managed Microsoft AD Tổng quan AWS Managed Microsoft AD là dịch vụ thư mục được quản lý bởi AWS, cho phép tổ chức vận hành Microsoft Active Directory trên nền tảng đám mây AWS mà không cần quản lý thủ công các Domain Controller.\nGiải pháp này hỗ trợ tích hợp liền mạch với môi trường Active Directory tại chỗ, cho phép thiết lập mối quan hệ tin cậy, đồng bộ người dùng và xác thực tập trung cho cả ứng dụng đám mây và tại chỗ.\nLợi ích chính 1. Quản lý tập trung Đồng bộ người dùng và nhóm giữa AD tại chỗ và AWS. Quản lý quyền và chính sách truy cập tại một nơi duy nhất. Giảm bớt các tác vụ lặp lại khi tạo và cấu hình tài khoản. 2. Nâng cao bảo mật Tích hợp Xác thực đa yếu tố (MFA) và Đăng nhập một lần (SSO). Thực thi chính sách bảo mật thông qua Group Policy Objects (GPOs). Mã hóa dữ liệu khi truyền và khi lưu trữ. 3. Khả năng mở rộng linh hoạt Dễ dàng mở rộng dung lượng người dùng và nhóm mà không cần mua thêm phần cứng. Triển khai Multi-AZ để đảm bảo tính sẵn sàng cao và khả năng chịu lỗi. Tích hợp với các dịch vụ AWS như Amazon EC2, RDS và WorkSpaces. 4. Giảm gánh nặng vận hành Loại bỏ nhu cầu duy trì máy chủ AD vật lý. Tự động cập nhật bản vá và phần mềm. Tối ưu chi phí với mô hình trả phí theo mức sử dụng. Thành phần chính AWS Managed Microsoft AD – Dịch vụ chính cung cấp hạ tầng Active Directory được quản lý toàn diện trên AWS. Quan hệ tin cậy (Trust Relationships) – Cho phép xác thực chéo miền và tích hợp với AD hiện có. AWS IAM Identity Center / SSO – Đăng nhập một lần t "
+},
+{
+	"uri": "/vi/2-prerequiste/",
+	"title": "Các bước chuẩn bị",
+	"tags": [],
+	"description": "",
+	"content": "\rBạn cần tạo sẵn 1 Linux instance thuộc public subnet và 1 Window instance thuộc private subnet để thực hiện bài thực hành này.\nĐể tìm hiểu cách tạo các EC2 instance và VPC với public/private subnet các bạn có thể tham khảo bài lab :\nTài khoản AWS quyền Quản trị VPC với 2 Private Subnets Để sử dụng System Manager để quản lý window instance nói riêng và các instance nói chung của chúng ta trên AWS, ta cần phải cung cấp quyền cho các instance của chúng ta có thể làm việc với System Manager.Trong phần chuẩn bị này, chúng ta cũng sẽ tiến hành tạo IAM Role để cấp quyền cho các instance có thể làm việc với System Manager.\nNội dung Chuẩn bị VPC và EC2 Instance Tạo IAM Role "
+},
+{
+	"uri": "/vi/2-prerequiste/1-aws-admin-access/",
+	"title": "1 - Tài khoản AWS quyền Quản trị",
+	"tags": [],
+	"description": "",
+	"content": "Các bước thực hiện 1. Đăng nhập AWS Management Console Truy cập https://aws.amazon.com/ và đăng nhập bằng tài khoản root AWS của bạn.\n2. Mở IAM Console Trong AWS Console, tìm kiếm IAM và mở dịch vụ Identity and Access Management.\n3. Tạo người dùng mới Chọn Users → Add users.\nNhập tên người dùng (ví dụ: admin-user).\nChọn hình thức xác thực Password hoặc Access key tùy nhu cầu.\n4. Gán quyền Chọn Attach existing policies directly.\nTích chọn chính sách AdministratorAccess.\n5. Hoàn tất và lưu thông tin đăng nhập Nhấn Create user.\nTải xuống hoặc lưu trữ an toàn thông tin đăng nhập (credentials).\nKết quả Bạn đã có một IAM user với toàn quyền quản trị trên AWS.\n"
+},
+{
+	"uri": "/vi/2-prerequiste/2-vpc-with-2-private-subnets/",
+	"title": "2 - VPC với 2 Private Subnets",
+	"tags": [],
+	"description": "",
+	"content": "Các bước thực hiện 1. Mở bảng điều khiển VPC Đăng nhập vào AWS Management Console. Truy cập dịch vụ VPC. 2. Tạo VPC mới Nhấn Create VPC. Tên: ProjectVPC (ví dụ). IPv4 CIDR block: ví dụ 10.0.0.0/16. Tenancy: Default. Nhấn Create VPC. 3. Tạo Private Subnets Vào Subnets → Create subnet. Chọn VPC vừa tạo. Tạo Private Subnet 1 ở Availability Zone 1 với CIDR (ví dụ 10.0.1.0/24). Tạo Private Subnet 2 ở Availability Zone 2 với CIDR (ví dụ 10.0.2.0/24). 4. Cấu hình Route Table Đảm bảo cả hai subnet đều liên kết với route table private (không kết nối trực tiếp tới internet gateway). 5. Kiểm tra Xác nhận VPC có ít nhất hai private subnet nằm ở hai Availability Zones khác nhau. Kết quả Bạn đã có một VPC hoàn chỉnh với hai private subnet ở hai AZ khác nhau.\n"
+},
+{
+	"uri": "/vi/3-create-aws-managed-microsoft-ad/",
+	"title": "3. Tạo AWS Managed Microsoft AD",
+	"tags": [],
+	"description": "",
+	"content": "Các bước thực hiện 1. Mở AWS Management Console Mở AWS Management Console và điều hướng tới Directory Service.\n2. Nhấn \u0026ldquo;Set up directory\u0026rdquo; Nhấn Set up directory.\n3. Chọn AWS Managed Microsoft AD Chọn AWS Managed Microsoft AD và nhấn Next.\n4. Chọn phiên bản Standard Edition: Tối đa 30,000 object, phù hợp với môi trường nhỏ. Enterprise Edition: Tối đa 500,000 object, phù hợp với tổ chức lớn.\n5. Điền thông tin Directory Nhập tên DNS của directory, tên NetBIOS và mật khẩu admin.\n6. Cấu hình VPC Chọn VPC và 2 subnet ở 2 Availability Zone khác nhau.\n7. Kiểm tra và tạo Kiểm tra lại tất cả cài đặt và nhấn Create directory.\n8. Chờ trạng thái Active Chờ trạng thái chuyển sang Active (khoảng 20–45 phút).\nKết quả mong đợi Một AWS Managed Microsoft AD được tạo, khả dụng trong VPC của bạn và sẵn sàng cho cấu hình tiếp theo.\n"
+},
+{
+	"uri": "/vi/4-configure-trust-relationships/",
+	"title": "4. Cấu hình Trust Relationships",
+	"tags": [],
+	"description": "",
+	"content": "Các bước thực hiện 1. Truy cập AWS Directory Service Đăng nhập AWS Management Console, vào Directory Service và chọn AWS Managed Microsoft AD của bạn.\n2. Mở mục Trust Relationships Trong trang chi tiết của Directory, chọn Networking \u0026amp; security → Trust relationships.\n3. Thêm Trust mới Nhấn Add trust.\n4. Chọn hướng Trust Chọn hướng trust:\nOne-way incoming – AD on-premises tin tưởng AWS Managed AD One-way outgoing – AWS Managed AD tin tưởng AD on-premises Two-way – Cả hai tin tưởng lẫn nhau Chọn Forest trust để hỗ trợ xác thực cross-domain.\n5. Cấu hình thông tin Trust Nhập FQDN của domain cần trust, đặt mật khẩu trust (giống nhau ở cả hai phía), và chọn:\nSelective authentication – kiểm soát truy cập chặt chẽ hơn Forest-wide authentication – cho phép truy cập rộng hơn\n6. Xác nhận và kiểm tra Trust Nhấn Create và chờ quá trình thiết lập hoàn tất.\nTừ AD on-premises, tạo trust tương ứng bằng công cụ Active Directory Domains and Trusts.\nKiểm tra trust từ cả hai phía để đảm bảo kết nối thành công.\nKết quả AWS Managed Microsoft AD và AD on-premises đã được kết nối qua trust relationships, cho phép xác thực và truy cập tài nguyên giữa hai môi trường.\n"
+},
+{
+	"uri": "/vi/5-migrate-users-and-groups/",
+	"title": "5. Di chuyển Người dùng và Nhóm",
+	"tags": [],
+	"description": "",
+	"content": "Các bước thực hiện 1. Cài đặt và cấu hình ADMT Triển khai ADMT trên một máy chủ Windows Server là thành viên của miền AWS Managed AD đích.\nĐảm bảo máy chủ ADMT có thể kết nối tới cả hai miền.\nNếu cần di chuyển mật khẩu, cài đặt Password Export Server (PES) trên bộ điều khiển miền của miền nguồn và cấu hình khóa mã hóa.\n2. Lập kế hoạch di chuyển Xác định các Đơn vị Tổ chức (OU) cần di chuyển.\nTạo kế hoạch di chuyển theo từng đợt:\nTài khoản quan trọng trước (quản trị viên, tài khoản dịch vụ) Người dùng thông thường Nhóm bảo mật và nhóm phân phối 3. Di chuyển tài khoản người dùng Sử dụng ADMT User Account Migration Wizard để:\nChọn miền nguồn và miền đích Chọn các tài khoản cần di chuyển Bật tùy chọn “Di chuyển các nhóm người dùng liên quan” Tùy chọn di chuyển mật khẩu (yêu cầu PES)\nKiểm tra nhật ký di chuyển để đảm bảo không có lỗi. 4. Di chuyển nhóm Sử dụng ADMT Group Migration Wizard để:\nGiữ nguyên phạm vi nhóm (Global, Universal, Domain Local) Duy trì tính toàn vẹn của thành viên nhóm 5. Xác minh sau di chuyển Đăng nhập bằng các tài khoản đã di chuyển để xác nhận khả năng xác thực trên AWS AD.\nXác minh rằng quyền và thành viên nhóm vẫn giữ nguyên.\nCập nhật các ứng dụng hoặc dịch vụ sử dụng AWS Managed Microsoft AD.\nThực tiễn tốt nhất Thực hiện di chuyển thử nghiệm trước khi di chuyển toàn bộ trong môi trường sản xuất. Sao lưu cả hai môi trường AD trước khi bắt đầu. Lên lịch di chuyển vào thời gian ít người dùng. Ghi chép lại mọi đối tượng đã di chuyển để phục vụ kiểm tra và khôi phục khi cần. "
+},
+{
+	"uri": "/vi/6-monitor-and-validate-integration/",
+	"title": "6. Giám sát và Xác minh Tích hợp",
+	"tags": [],
+	"description": "",
+	"content": "Các bước thực hiện 1. Thiết lập công cụ giám sát Amazon CloudWatch: Theo dõi các chỉ số về tình trạng dịch vụ thư mục, trạng thái trust và quá trình replication. AWS CloudTrail: Ghi lại và xem xét các thay đổi đối với môi trường AD. AWS Directory Service Console: Kiểm tra trạng thái và nhật ký. 2. Xác minh Trust Relationship Sử dụng Active Directory Domains and Trusts để xác nhận trust đã được thiết lập và đang hoạt động. Chạy lệnh nltest /sc_query:\u0026lt;TrustedDomain\u0026gt; để kiểm tra trạng thái kênh bảo mật. 3. Kiểm tra hoạt động của Người dùng và Nhóm Thử đăng nhập người dùng từ cả hai môi trường. Xác nhận nhóm và quyền được đồng bộ. Thực hành tốt nhất Bật cảnh báo CloudWatch cho lỗi trust hoặc replication. Thiết lập kiểm tra tự động định kỳ. Lưu lại toàn bộ kết quả và điều chỉnh khi cần. "
+},
+{
+	"uri": "/vi/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/vi/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]

@@ -1,0 +1,78 @@
+[
+{
+	"uri": "/1-introduce/",
+	"title": "Introduction",
+	"tags": [],
+	"description": "",
+	"content": "Introduction to Active Directory Integration with AWS Managed Microsoft AD Overview AWS Managed Microsoft AD is a managed directory service provided by AWS, enabling organizations to run Microsoft Active Directory on the AWS Cloud without the need to manage domain controllers manually.\nThis solution allows seamless integration with existing on-premises Active Directory environments, enabling trust relationships, user synchronization, and centralized authentication for both cloud and on-premises applications.\nKey Benefits 1. Centralized Management Synchronize users and groups between on-premises AD and AWS. Manage permissions and access policies from a single location. Reduce repetitive tasks when creating and configuring accounts. 2. Enhanced Security Integrate Multi-Factor Authentication (MFA) and Single Sign-On (SSO). Enforce security policies using Group Policy Objects (GPOs). Data encryption both in-transit and at-rest. 3. Flexible Scalability Easily scale user and group capacity without purchasing additional hardware. Multi-AZ deployment for high availability and fault tolerance. Integration with AWS services like Amazon EC2, RDS, and WorkSpaces. 4. Reduced Operational Overhead Eliminate the need for maintaining physical AD servers. Automatic patching and software updates. Cost optimization with pay-as-you-go pricing. Core Components AWS Managed Microsoft AD – The main service providing a fully managed Active Directory infrastructure on AWS. Trust Relationships – Enable cross-domain authentication and integration with existing AD. AWS IAM Identity Center / SSO – Centralized single sign-on for AWS and third-party applications. Monitoring \u0026amp; Logging – Use Amazon CloudWatch, AWS CloudTrail, and Amazon SNS for monitoring, logging, and alerting. "
+},
+{
+	"uri": "/",
+	"title": "Introduction",
+	"tags": [],
+	"description": "",
+	"content": "Introduction to Active Directory Integration with AWS Managed Microsoft AD Overview AWS Managed Microsoft AD is a managed directory service provided by AWS, enabling organizations to run Microsoft Active Directory on the AWS Cloud without the need to manage domain controllers manually.\nThis solution allows seamless integration with existing on-premises Active Directory environments, enabling trust relationships, user synchronization, and centralized authentication for both cloud and on-premises applications.\nKey Benefits 1. Centralized Management Synchronize users and groups between on-premises AD and AWS. Manage permissions and access policies from a single location. Reduce repetitive tasks when creating and configuring accounts. 2. Enhanced Security Integrate Multi-Factor Authentication (MFA) and Single Sign-On (SSO). Enforce security policies using Group Policy Objects (GPOs). Data encryption both in-transit and at-rest. 3. Flexible Scalability Easily scale user and group capacity without purchasing additional hardware. Multi-AZ deployment for high availability and fault tolerance. Integration with AWS services like Amazon EC2, RDS, and WorkSpaces. 4. Reduced Operational Overhead Eliminate the need for maintaining physical AD servers. Automatic patching and software updates. Cost optimization with pay-as-you-go pricing. Core Components AWS Managed Microsoft AD – The main service providing a fully managed Active Directory infrastructure on AWS. Trust Relationships – Enable cross-domain authentication and integration with existing AD. AWS IAM Identity Center / SSO – Centralized single sign-on for AWS and third-party applications. Monitoring \u0026amp; Logging – Use Amazon CloudWatch, AWS CloudTrail, and Amazon SNS for monitoring, logging, and alerting. "
+},
+{
+	"uri": "/2-prerequiste/",
+	"title": "Preparation ",
+	"tags": [],
+	"description": "",
+	"content": "\rYou need to create 1 Linux instance on the public subnet and 1 Window instance on the private subnet to perform this lab.\nTo learn how to create EC2 instances and VPCs with public/private subnets, you can refer to the lab:\nAWS Admin Access VPC with 2 Private Subnets In order to use System Manager to manage our window instances in particular and our instances in general on AWS, we need to give permission to our instances to be able to work with System Manager. In this preparation, we will also proceed to create an IAM Role to grant permissions to instances that can work with System Manager.\nContent Prepare VPC and EC2 Create IAM Role "
+},
+{
+	"uri": "/2-prerequiste/1-aws-admin-access/",
+	"title": "1 - AWS Admin Access",
+	"tags": [],
+	"description": "",
+	"content": "Step-by-Step 1. Sign in to AWS Management Console Go to https://aws.amazon.com/ and log in using your AWS root account.\n2. Open IAM Console In the AWS Console, search for IAM and open the Identity and Access Management service.\n3. Create a New User Click Users → Add users.\nEnter a username (e.g., admin-user).\nSelect Password or Access key authentication depending on your needs.\n4. Assign Permissions Choose Attach existing policies directly.\nSelect AdministratorAccess policy.\n5. Complete and Save Credentials Click Create user.\nDownload or securely store the access credentials.\nResult You now have an IAM user with full administrative access.\n"
+},
+{
+	"uri": "/2-prerequiste/2-vpc-with-2-private-subnets/",
+	"title": "2 - VPC with 2 Private Subnets",
+	"tags": [],
+	"description": "",
+	"content": "Step-by-Step 1. Open the VPC Console Sign in to AWS Management Console and navigate to VPC service.\n2. Create a New VPC Click Create VPC.\nName: ProjectVPC (example). IPv4 CIDR block: e.g., 10.0.0.0/16. Tenancy: Default. Click Create VPC.\n3. Create Private Subnets Go to Subnets → Create subnet.\nSelect your VPC. Create Private Subnet 1 in Availability Zone 1 with CIDR (e.g., 10.0.1.0/24). Create Private Subnet 2 in Availability Zone 2 with CIDR (e.g., 10.0.2.0/24).\n4. Configure Route Tables Ensure both subnets are associated with a private route table (no direct internet gateway).\n5. Verify Confirm that the VPC has at least two private subnets in different Availability Zones.\nResult You now have a VPC ready with two private subnets in separate AZs.\n"
+},
+{
+	"uri": "/3-create-aws-managed-microsoft-ad/",
+	"title": "3. Create AWS Managed Microsoft AD",
+	"tags": [],
+	"description": "",
+	"content": "Steps to Perform 1. Open AWS Management Console Open the AWS Management Console and navigate to Directory Service.\n2. Click \u0026ldquo;Set up directory\u0026rdquo; Click Set up directory.\n3. Select AWS Managed Microsoft AD Select AWS Managed Microsoft AD and click Next.\n4. Choose Edition Standard Edition: Supports up to 30,000 objects, suitable for small environments. Enterprise Edition: Supports up to 500,000 objects, suitable for large organizations.\n5. Fill in Directory Information Enter the directory DNS name, NetBIOS name, and the admin password.\n6. Configure VPC Select the VPC and two subnets in different Availability Zones.\n7. Review and Create Review all settings and click Create directory.\n8. Wait for Active Status Wait until the status changes to Active (about 20–45 minutes).\nExpected Result An AWS Managed Microsoft AD is created, available in your VPC, and ready for further configuration.\n"
+},
+{
+	"uri": "/4-configure-trust-relationships/",
+	"title": "4. Configure Trust Relationships",
+	"tags": [],
+	"description": "",
+	"content": "Step-by-Step 1. Access AWS Directory Service Sign in to the AWS Management Console, navigate to Directory Service, and select your AWS Managed Microsoft AD.\n2. Open Trust Relationships In the directory details page, choose Networking \u0026amp; security → Trust relationships.\n3. Add a New Trust Click Add trust.\n4. Select Trust Direction Choose the trust direction:\nOne-way incoming – On-prem AD trusts AWS Managed AD. One-way outgoing – AWS Managed AD trusts on-prem AD. Two-way – Both directories trust each other. Select Forest trust for cross-domain authentication.\n5. Configure Trust Settings Enter the FQDN of the trusted domain, set the trust password (must match on both sides), and choose:\nSelective authentication for tighter control Forest-wide authentication for broader access\n6. Confirm and Validate Trust Click Create and wait for the trust to be established.\nFrom your on-prem AD, create the corresponding trust using Active Directory Domains and Trusts.\nValidate the trust from both sides to confirm connectivity.\nOutcome AWS Managed Microsoft AD and your on-premises AD are now connected via trust relationships, enabling authenticated access to resources across environments.\n"
+},
+{
+	"uri": "/5-migrate-users-and-groups/",
+	"title": "5. Migrate Users and Groups",
+	"tags": [],
+	"description": "",
+	"content": "Step-by-Step 1. Install and Configure ADMT Deploy ADMT on a Windows Server that is a member of the target AWS Managed AD domain.\nEnsure that the ADMT server can communicate with both domains.\nIf migrating passwords, install Password Export Server (PES) on a domain controller in the source domain and configure encryption keys.\n2. Plan the Migration Identify Organizational Units (OUs) to migrate.\nCreate a migration batch plan:\nCritical accounts first (administrators, service accounts) Regular users Security and distribution groups 3. Migrate User Accounts Use ADMT User Account Migration Wizard to:\nSelect source and target domains Choose accounts to migrate Enable “Migrate associated user groups” Optionally migrate passwords (requires PES)\nValidate migration logs to ensure no errors. 4. Migrate Groups Use ADMT Group Migration Wizard to:\nPreserve group scope (Global, Universal, Domain Local) Maintain group membership integrity 5. Post-Migration Validation Log in with migrated accounts to confirm authentication in AWS AD.\nVerify that permissions and group memberships remain intact.\nUpdate any applications or services to use AWS Managed Microsoft AD.\nBest Practices Perform a pilot migration before full production migration. Take backups of both AD environments before starting. Schedule migrations during low-traffic hours. Document every migrated object for audit and rollback purposes. "
+},
+{
+	"uri": "/6-monitor-and-validate-integration/",
+	"title": "6. Monitor and Validate Integration",
+	"tags": [],
+	"description": "",
+	"content": "Step-by-Step 1. Set Up Monitoring Tools Amazon CloudWatch: Track metrics for directory service health, trust status, and replication. AWS CloudTrail: Capture and review changes to the AD environment. AWS Directory Service Console: Check status and logs. 2. Validate Trust Relationship Use Active Directory Domains and Trusts to confirm trust is established and operational. Run nltest /sc_query:\u0026lt;TrustedDomain\u0026gt; to test secure channel status. 3. Verify User and Group Functionality Test user authentication from both environments. Confirm group membership synchronization. 4. Check Security Policies Validate that Group Policy Objects (GPOs) are being applied as intended. Ensure password policies and MFA configurations are enforced. 5. Compliance and Audit Review logs for unauthorized access attempts. Ensure data residency and compliance with standards (ISO, SOC, HIPAA, etc.). Best Practices Enable CloudWatch alarms for failed trust validation or replication errors. Implement periodic automated tests. Document all findings and adjustments. "
+},
+{
+	"uri": "/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]

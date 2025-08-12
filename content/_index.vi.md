@@ -1,22 +1,40 @@
 ---
-title : "Session Management"
-date :  "`r Sys.Date()`" 
-weight : 1 
-chapter : false
+title: "Giới thiệu"
+date: 2025-08-12T00:00:00+07:00
+weight: 1
+chapter: false
+pre: "<b>1. </b>"
 ---
-# Làm việc với Amazon System Manager - Session Manager
 
-### Tổng quan
+# Giới thiệu về Tích hợp Active Directory với AWS Managed Microsoft AD
 
- Trong bài lab này, bạn sẽ tìm hiểu các khái niệm cơ bản và thực hành về Amazon System Manager - Session Management. Thực hành tạo kết nối đến máy chủ public và máy chủ private trong VPC.
+## Tổng quan
+AWS Managed Microsoft AD là dịch vụ thư mục được quản lý bởi AWS, cho phép tổ chức vận hành Microsoft Active Directory trên nền tảng đám mây AWS mà không cần quản lý thủ công các Domain Controller.  
+Giải pháp này hỗ trợ tích hợp liền mạch với môi trường Active Directory tại chỗ, cho phép thiết lập mối quan hệ tin cậy, đồng bộ người dùng và xác thực tập trung cho cả ứng dụng đám mây và tại chỗ.
 
-![ConnectPrivate](/images/arc-log.png) 
+## Lợi ích chính
 
-### Nội dung
+### 1. Quản lý tập trung
+- Đồng bộ người dùng và nhóm giữa AD tại chỗ và AWS.
+- Quản lý quyền và chính sách truy cập tại một nơi duy nhất.
+- Giảm bớt các tác vụ lặp lại khi tạo và cấu hình tài khoản.
 
- 1. [Giới thiệu](1-introduce/)
- 2. [Các bước chuẩn bị](2-Prerequiste/)
- 3. [Tạo kết nối đến máy chủ EC2](3-Accessibilitytoinstance/)
- 4. [Quản lý session logs](4-s3log/)
- 5. [Port Forwarding](5-Portfwd/)
- 6. [Dọn dẹp tài nguyên](6-cleanup/)
+### 2. Nâng cao bảo mật
+- Tích hợp Xác thực đa yếu tố (MFA) và Đăng nhập một lần (SSO).
+- Thực thi chính sách bảo mật thông qua Group Policy Objects (GPOs).
+- Mã hóa dữ liệu khi truyền và khi lưu trữ.
+
+### 3. Khả năng mở rộng linh hoạt
+- Dễ dàng mở rộng dung lượng người dùng và nhóm mà không cần mua thêm phần cứng.
+- Triển khai Multi-AZ để đảm bảo tính sẵn sàng cao và khả năng chịu lỗi.
+- Tích hợp với các dịch vụ AWS như Amazon EC2, RDS và WorkSpaces.
+
+### 4. Giảm gánh nặng vận hành
+- Loại bỏ nhu cầu duy trì máy chủ AD vật lý.
+- Tự động cập nhật bản vá và phần mềm.
+- Tối ưu chi phí với mô hình trả phí theo mức sử dụng.
+
+## Thành phần chính
+1. **AWS Managed Microsoft AD** – Dịch vụ chính cung cấp hạ tầng Active Directory được quản lý toàn diện trên AWS.
+2. **Quan hệ tin cậy (Trust Relationships)** – Cho phép xác thực chéo miền và tích hợp với AD hiện có.
+3. **AWS IAM Identity Center / SSO** – Đăng nhập một lần t
